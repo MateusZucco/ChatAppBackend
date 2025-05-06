@@ -9,7 +9,7 @@ const create = async (data: {
 }) => {
   try {
     console.log(data);
-    
+
     const response = await connection.query(`
         INSERT INTO chats (
             text,
@@ -17,10 +17,11 @@ const create = async (data: {
             contact_from_id
         ) VALUES (
             ${data.text},
-            1,
-            2 
+            ${data.userToId},
+            ${data.userFromId} 
         )
     `);
+    return response;
   } catch (err) {
     console.log(err);
   }
